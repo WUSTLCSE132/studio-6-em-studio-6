@@ -1,4 +1,4 @@
-package studio6;
+package studio5;
 
 import jssc.*;
 
@@ -25,12 +25,32 @@ public class SerialComm {
 		
 		debug = false; // Default is to NOT be in debug mode
 	}
+	
+	public boolean available() {
+		if (getInputBufferBytesCount() > 0) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	public byte readByte() {
+		byte[] array = readBytes(byteCount);
+		return array[0];
+	}
+	
+	// TODO: Add writeByte() method to write data to serial port
+	public void writeByte(byte data) {
+		try {
+			port.writeByte(data);
+		} catch (SerialPortException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void main(String args[]) {
 		
-	// TODO: Add writeByte() method from Studio 5
+	}
 	
-	// TODO: Add available() method
-	
-	// TODO: Add readByte() method	
-	
-	// TODO: Add a main() method
 }
